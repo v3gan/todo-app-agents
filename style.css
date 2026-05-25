@@ -4,14 +4,90 @@
     box-sizing: border-box;
 }
 
+:root {
+    --bg-gradient-start: #667eea;
+    --bg-gradient-end: #764ba2;
+    --container-bg: #ffffff;
+    --text-primary: #333333;
+    --text-secondary: #999999;
+    --input-bg: #ffffff;
+    --input-border: #dddddd;
+    --input-border-focus: #667eea;
+    --btn-primary: #667eea;
+    --btn-primary-hover: #5568d3;
+    --btn-danger: #dc3545;
+    --btn-danger-hover: #c82333;
+    --todo-item-bg: #f8f9fa;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme {
+    --bg-gradient-start: #1a1a2e;
+    --bg-gradient-end: #16213e;
+    --container-bg: #0f3460;
+    --text-primary: #e9ecef;
+    --text-secondary: #adb5bd;
+    --input-bg: #1a1a2e;
+    --input-border: #495057;
+    --input-border-focus: #53a8ff;
+    --btn-primary: #53a8ff;
+    --btn-primary-hover: #409eff;
+    --btn-danger: #f56c6c;
+    --btn-danger-hover: #f78989;
+    --todo-item-bg: #1a1a2e;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    transition: background 0.3s ease;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--container-bg);
+    border: 2px solid var(--input-border);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    z-index: 1000;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px var(--shadow-color);
+}
+
+.container {
+    background: var(--container-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    max-width: 500px;
+    width: 100%;
+    transition: background 0.3s ease;
+}
+
+h1 {
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    text-align: center;
+    transition: color 0.3s ease;
 }
 
 .container {
@@ -38,30 +114,32 @@ h1 {
 #todoInput {
     flex: 1;
     padding: 12px;
-    border: 2px solid #ddd;
+    border: 2px solid var(--input-border);
     border-radius: 5px;
     font-size: 16px;
-    transition: border-color 0.3s;
+    background: var(--input-bg);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
 }
 
 #todoInput:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: var(--input-border-focus);
 }
 
 #addBtn {
     padding: 12px 24px;
-    background: #667eea;
+    background: var(--btn-primary);
     color: white;
     border: none;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s ease;
 }
 
 #addBtn:hover {
-    background: #5568d3;
+    background: var(--btn-primary-hover);
 }
 
 #todoList {
@@ -73,10 +151,10 @@ h1 {
     justify-content: space-between;
     align-items: center;
     padding: 12px;
-    background: #f8f9fa;
+    background: var(--todo-item-bg);
     margin-bottom: 10px;
     border-radius: 5px;
-    transition: transform 0.2s;
+    transition: all 0.3s ease;
 }
 
 .todo-item:hover {
@@ -85,27 +163,27 @@ h1 {
 
 .todo-text {
     flex: 1;
-    color: #333;
+    color: var(--text-primary);
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
 }
 
 .todo-text.completed {
     text-decoration: line-through;
-    color: #999;
+    color: var(--text-secondary);
     opacity: 0.6;
 }
 
 .delete-btn {
     padding: 8px 16px;
-    background: #dc3545;
+    background: var(--btn-danger);
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s ease;
 }
 
 .delete-btn:hover {
-    background: #c82333;
+    background: var(--btn-danger-hover);
 }
